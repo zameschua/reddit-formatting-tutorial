@@ -101,16 +101,24 @@ You can also change the text of the link by including the text inside of square 
 You can also provide tooltip text for links like so:
 [Hover over me to view the tooltip text](https://google.com "tooltip text")
 `
-const TUTORIAL_MESSAGE_MISC = `some|header|labels
+const TUTORIAL_MESSAGE_QUOTES = `#### Quotes
+---
+Start your line with a right angle bracket \`>\` to quote some
+> This is a quote
+`
+
+const TUTORIAL_MESSAGE_MISC = `### UNDER CONSTRUCTION
+---
+You can create tables with markdown too!
+
+some|header|labels
 :---|:--:|---:
 Left-justified|center-justified|right-justified
 a|b|c
 d|e|f
-
->quotes
 `
 
-export const tutorialMessages = [
+export const TUTORIAL_MESSAGES = [
   TUTORIAL_MESSAGE_DEFAULT,
   TUTORIAL_MESSAGE_PARAGRAPHING,
   TUTORIAL_MESSAGE_FONT_FORMATTING,
@@ -118,5 +126,8 @@ export const tutorialMessages = [
   TUTORIAL_MESSAGE_LISTS,
   TUTORIAL_MESSAGE_CODE_BLOCKS,
   TUTORIAL_MESSAGE_LINKS,
+  TUTORIAL_MESSAGE_QUOTES,
   TUTORIAL_MESSAGE_MISC,
 ];
+
+export const NUMBER_OF_TUTORIAL_MESSAGES = TUTORIAL_MESSAGES.length - 1;

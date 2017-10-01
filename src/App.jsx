@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/bootstrap.min.css';
 
-import { tutorialMessages } from './tutorialMessages'
+import { TUTORIAL_MESSAGES, NUMBER_OF_TUTORIAL_MESSAGES } from './tutorialMessages'
 import Navbar from './components/Navbar';
 import MainMarkdownArea from './components/MainMarkdownArea';
 
@@ -10,7 +10,9 @@ export default class App extends Component {
     super(props);
     this.state = {
       pageNumber: 0,
-      displayText: tutorialMessages[0],
+      displayText: TUTORIAL_MESSAGES[0],
+      leftButtonDisabled: true,
+      rightButtonDisabled: false,
     };
 
     this.updateDisplayText = this.updateDisplayText.bind(this);
@@ -27,25 +29,54 @@ export default class App extends Component {
   nextPageHandler(pageNumber) {
     // TODO: Animate out
     this.setState({
-      displayText: tutorialMessages[pageNumber],
+      displayText: TUTORIAL_MESSAGES[pageNumber],
     });
     // TODO: Animate in
   }
 
   handlePreviousClick() {
+    if (this.state.pageNumber === 0) {
+      return;
+    }
+
     const previousPage = this.state.pageNumber - 1;
     this.setState({
       pageNumber: previousPage,
-      displayText: tutorialMessages[previousPage],
+      displayText: TUTORIAL_MESSAGES[previousPage],
     })
+
+    if (this.state.pageNumber === 1) {
+      this.setState({
+        leftButtonDisabled: true,
+      })
+    } else {
+      this.setState({
+        rightButtonDisabled: false,
+        leftButtonDisabled: false,
+      })
+    }
   }
 
   handleNextClick() {
+    if (this.state.pageNumber === NUMBER_OF_TUTORIAL_MESSAGES) {
+      return;
+    }
     const nextPage = this.state.pageNumber + 1;
     this.setState({
       pageNumber: nextPage,
-      displayText: tutorialMessages[nextPage],
+      displayText: TUTORIAL_MESSAGES[nextPage],
     })
+
+    if (this.state.pageNumber === NUMBER_OF_TUTORIAL_MESSAGES - 1) {
+      this.setState({
+        rightButtonDisabled: true,
+      })
+    } else {
+      this.setState({
+        rightButtonDisabled: false,
+        leftButtonDisabled: false,
+      })
+    }
   }
 
   render() {
@@ -70,6 +101,7 @@ export default class App extends Component {
               <button type="button"
                 className="btn btn-success"
                 onClick={this.handlePreviousClick}
+                disabled={this.state.leftButtonDisabled}
               >
                 Previous
               </button>
@@ -78,6 +110,7 @@ export default class App extends Component {
               <button type="button"
                 className="btn btn-success"
                 onClick={this.handleNextClick}
+                disabled={this.state.rightButtonDisabled}
               >
                 Next
               </button>
