@@ -3,6 +3,17 @@ import React from 'react';
 var markdownToHtmlParser = require('snuownd').getParser();
 var HtmlToReactParser = require('html-to-react').Parser;
 var htmlToReactParser = new HtmlToReactParser();
+var marked = require('marked');
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: false,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: false,
+  smartypants: false
+});
 
 const MarkdownRenderer = ({markdown}) => {
   return (
@@ -15,7 +26,7 @@ const MarkdownRenderer = ({markdown}) => {
           overflow: "auto",
         }}>
         <div className="card-block">
-          {htmlToReactParser.parse(markdownToHtmlParser.render(markdown))}
+          {htmlToReactParser.parse(marked(markdownToHtmlParser.render(markdown)))}
         </div>
       </div>
     </div>
