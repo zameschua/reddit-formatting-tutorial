@@ -15,17 +15,17 @@ This very simple app was made in a weekend to
 ### Development
 
 Install NodeJS 6+ Install Yarn then run the following command:
-`
+```
 $ yarn
-`
+```
 To run the development build, simply run:
-`
+```
 $ yarn start
-`
+```
 
 ### Build for Deployment
-`
+```
 $ yarn build
-`
+```
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
