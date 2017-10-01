@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './bootstrap.min.css';
+
 import logo from './logo.svg';
 import './App.css';
 
